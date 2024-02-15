@@ -20,13 +20,13 @@ public class Main {
         Transaction transaction = session.beginTransaction();
 
         /*Author author = new Author();
-        author.setName("Charles");
+        author.setName("Jhonson");
 
         Book book = new Book();
-        book.setId(1);
-        book.setTitle("Freedom");
-        book.setYear(Year.of(2007));
-        book.setPrice(1000);
+        //book.setId(1);
+        book.setTitle("Freedom fighters");
+        book.setYear(Year.of(2016));
+        book.setPrice(1800);
         book.setAuthor(author);
 
         bookList.add(book);
@@ -36,7 +36,7 @@ public class Main {
         session.save(author);
         session.save(book);*/
 
-        /*Author dummy = session.load(Author.class,2);
+        /*Author dummy = session.load(Author.class,52);
 
         Book book = new Book();
         book.setTitle("Real Freedom");
@@ -48,14 +48,19 @@ public class Main {
 
         // Question 1
 
-        Query query = session.createQuery("from Book where year > ?1");
+        Query query = session.createQuery("FROM Book WHERE year > ?1");
         query.setParameter(1,Year.of(2010));
         List<Book> books = query.getResultList();
 
+        for (Book b:books) {
+            System.out.println(b.getTitle());
+        }
+
         // Question 2
 
+        int query2 = session.createQuery("UPDATE Book SET price = price+price*0.1 WHERE author.id = 52").executeUpdate();
 
-
+        // Question 3
 
 
         transaction.commit();
