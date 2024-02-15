@@ -1,9 +1,6 @@
 package lk.ijse.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
@@ -14,15 +11,26 @@ public class Author {
     @GeneratedValue
     private int a_id;
     private String name;
-    @OneToMany(mappedBy = "author")
+    private String counntry;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Book> bookList;
 
     public Author() {
     }
 
-    public Author(int a_id, String name, List<Book> bookList) {
+    public String getCounntry() {
+        return counntry;
+    }
+
+    public void setCounntry(String counntry) {
+        this.counntry = counntry;
+    }
+
+    public Author(int a_id, String name, String counntry, List<Book> bookList) {
         this.a_id = a_id;
         this.name = name;
+        this.counntry = counntry;
         this.bookList = bookList;
     }
 
@@ -53,9 +61,9 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "id='" + a_id + '\'' +
+                "a_id=" + a_id +
                 ", name='" + name + '\'' +
-                ", bookList=" + bookList +
+                ", counntry='" + counntry + '\'' +
                 '}';
     }
 }
